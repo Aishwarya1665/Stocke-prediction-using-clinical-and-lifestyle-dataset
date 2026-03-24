@@ -31,6 +31,15 @@ def load_pipeline():
     return load_model(MODEL_PATH)
 
 
+@app.get("/")
+async def root():
+    return {
+        "message": "Stroke Prediction API",
+        "docs": "/docs",
+        "predict_endpoint": "POST /predict",
+    }
+
+
 @app.post("/predict")
 async def predict(features: PatientFeatures):
     try:
